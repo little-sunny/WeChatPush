@@ -31,12 +31,12 @@ def get_news():
 
 def send_news():
     try:
-        zxz = bot.friends().search(u'xxx')[0] #查找好友xxx, 是微信名，不是微信号或备注
+        zxz = bot.friends().search(u'xxx')[0]  # 查找好友xxx, 是微信名，不是微信号或备注
         contents, note, translation = get_news()
         zxz.send(contents)  # 发送contents
         zxz.send(note)  # 发送note
-        zxz.send(translation[6:]) # 发送translation，从第6位开始
-        t = Timer(86400, send_news) # 每天发一次，一天是86400秒
+        zxz.send(translation[6:])  # 发送translation，从第6位开始
+        t = Timer(86400, send_news)  # 每天发一次，一天是86400秒
         t.start()
     except:
         myself = bot.friends().search(u'xxx')[0]

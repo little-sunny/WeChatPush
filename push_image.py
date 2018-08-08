@@ -21,13 +21,13 @@ import requests
 from urllib import request
 import os
 
-bot = Bot(cache_path=True) # 扫描二维码登录微信
+bot = Bot(cache_path=True)  # 扫描二维码登录微信
 
 
 def get_news():
     url = "http://open.iciba.com/dsapi/"
     r = requests.get(url)
-    image_url = r.json()['fenxiang_img'] # 获取图片地址
+    image_url = r.json()['fenxiang_img']  # 获取图片地址
     return image_url
 
 
@@ -35,9 +35,9 @@ def send_news():
     try:
         cur_path = os.path.abspath(os.curdir)  # 获取当前路径
         image_path = cur_path + '\\' + 'image.jpg'
-        request.urlretrieve(get_news(), image_path) # 将图片保存到当前目录下，图片名为“image.jpg”
+        request.urlretrieve(get_news(), image_path)  # 将图片保存到当前目录下，图片名为“image.jpg”
 
-        friends = [u"xxx", u"xxx"] # 想要发送的好友列表
+        friends = [u"xxx", u"xxx"]  # 想要发送的好友列表
         for i in friends:
             my_friend = bot.friends().search(i)[0]  # 查找好友
             my_friend.send('@img@image.jpg')  # 发送图片， 加上前缀 @img@， 表示发送的是图片
